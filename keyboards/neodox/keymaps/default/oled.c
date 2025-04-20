@@ -17,9 +17,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #ifdef OLED_ENABLE
 
-#include QMK_KEYBOARD_H
+#    include QMK_KEYBOARD_H
 
-#include "luna.h"
+#    include "luna.h"
 
 static void render_logo(void) {
     // clang-format off
@@ -44,6 +44,12 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 }
 
 bool oled_task_user(void) {
+    // manual OLED timeout
+    if (last_input_activity_elapsed() > OLED_TIMEOUT) {
+        oled_off();
+        return false;
+    }
+
     if (is_keyboard_master()) {
         print_status_luna();
     } else {

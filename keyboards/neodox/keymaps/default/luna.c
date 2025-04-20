@@ -38,11 +38,8 @@ bool isBarking  = false;
 bool isJumping  = false;
 bool showedJump = true;
 
-const char *layer_names[] = {
-    [0] = "QWRTY",
-    [1] = "SYMBL",
-    [2] = " NAV ",
-    [3] = "ADJST"
+const char *layer_names[] = {"QWRTY", "SYMBL", " NAV ", "ADJST"
+
 };
 
 /* Sit */
@@ -147,9 +144,9 @@ static void render_luna(uint8_t luna_x, uint8_t luna_y) {
 
 void print_status_luna(void) {
 #ifdef WPM_ENABLE
-    current_wpm   = get_current_wpm();
+    current_wpm = get_current_wpm();
 #else
-    current_wpm   = 0;
+    current_wpm = 0;
 #endif
     led_usb_state = host_keyboard_led_state();
 
