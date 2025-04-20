@@ -15,26 +15,9 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include "keymap.h"
+
 #include QMK_KEYBOARD_H
-
-enum layers { _QWERTY, _SYMB, _NAV, _ADJUST };
-
-// Shortcuts to make keymap more readable
-#define SYM_L MO(_SYMB)
-#define KC_NAGR LT(_NAV, KC_GRV)
-#define KC_NAMI LT(_NAV, KC_MINS)
-#define KC_ADEN LT(_ADJUST, KC_END)
-#define KC_ADPU LT(_ADJUST, KC_PGUP)
-
-#define KC_CTLF LCTL(KC_LEFT)
-#define KC_CTRG LCTL(KC_RIGHT)
-
-#define MT_SHBS MT(MOD_LSFT, KC_BSPC)
-#define MT_CTDL MT(MOD_LCTL, KC_DEL)
-#define MT_ALES MT(MOD_LALT, KC_ESC)
-#define LT_NVSP LT(_NAV, KC_SPC)
-#define LT_ADCR LT(_ADJUST, KC_ENTER)
-#define LT_SYMI LT(_SYMB, KC_MINS)
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -70,9 +53,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                                           ┌────────┬────────┬────────┬────────┬────────┬────────┐
      _______ ,_______ ,_______ ,_______ ,_______ ,_______ ,                                            _______ ,_______ ,_______ ,_______ ,_______ ,_______ ,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐                         ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     _______ ,XXXXXXX ,KC_BTN1 ,KC_MS_U ,KC_BTN2 ,KC_WH_U ,_______ ,                          _______ ,KC_PGUP ,KC_CTLF ,KC_UP   ,KC_CTRG ,XXXXXXX ,_______ ,
+     _______ ,XXXXXXX ,KC_BTN1 ,KC_MS_U ,KC_BTN2 ,KC_WH_D ,_______ ,                          _______ ,KC_PGUP ,KC_CTLF ,KC_UP   ,KC_CTRG ,XXXXXXX ,_______ ,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     _______ ,XXXXXXX ,KC_MS_L ,KC_MS_D ,KC_MS_R ,KC_WH_D ,_______ ,                          _______ ,KC_PGDN ,KC_LEFT ,KC_DOWN ,KC_RIGHT,XXXXXXX ,_______ ,
+     _______ ,XXXXXXX ,KC_MS_L ,KC_MS_D ,KC_MS_R ,KC_WH_U ,_______ ,                          _______ ,KC_PGDN ,KC_LEFT ,KC_DOWN ,KC_RIGHT,XXXXXXX ,_______ ,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┐       ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      _______ ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,_______ ,_______ ,        _______ ,_______ ,XXXXXXX ,KC_HOME ,XXXXXXX ,KC_END  ,XXXXXXX ,_______ ,
   //├────────┼────────┼────────┼────────┼────┬───┴────┬───┼────────┼────────┤       ├────────┼────────┼───┬────┴───┬────┼────────┼────────┼────────┼────────┤

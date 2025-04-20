@@ -38,9 +38,7 @@ bool isBarking  = false;
 bool isJumping  = false;
 bool showedJump = true;
 
-const char *layer_names[] = {"QWRTY", "SYMBL", " NAV ", "ADJST"
-
-};
+const char *layer_names[] = {"QWRTY", "SYMBL", " NAV ", "ADJST"};
 
 /* Sit */
 static const char PROGMEM sit[2][ANIM_SIZE] = {

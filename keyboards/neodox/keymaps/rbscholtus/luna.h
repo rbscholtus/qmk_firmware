@@ -14,6 +14,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 /* settings */
 #define MIN_WALK_SPEED 10
 #define MIN_RUN_SPEED 40

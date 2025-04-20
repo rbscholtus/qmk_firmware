@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #    include QMK_KEYBOARD_H
 
+#    include "keymap.h"
 #    include "luna.h"
 
 static void render_logo(void) {
@@ -63,13 +64,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case KC_LSFT:
         case KC_RSFT:
+        case MT_SHBS:
             isSneaking = record->event.pressed;
             break;
         case KC_LCTL:
         case KC_RCTL:
+        case MT_CTDL:
             isBarking = record->event.pressed;
             break;
         case KC_SPC:
+        case LT_NVSP:
             isJumping = record->event.pressed;
             if (record->event.pressed) {
                 showedJump = false;
