@@ -30,6 +30,8 @@ enum layers { _QWERTY, _SYMB, _NAV, _ADJUST };
 
 #define KC_CTLF LCTL(KC_LEFT)
 #define KC_CTRG LCTL(KC_RIGHT)
+#define KC_CTHM LCTL(KC_HOME)
+#define KC_CTEN LCTL(KC_END)
 
 #define MT_SHBS MT(MOD_LSFT, KC_BSPC)
 #define MT_CTDL MT(MOD_LCTL, KC_DEL)
