@@ -19,23 +19,44 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include QMK_KEYBOARD_H
 
-enum layers { _QWERTY, _SYMB, _NAV, _ADJUST };
+enum layers { _QWE_WN, _QWE_MC, _SYMBOL, _NAV_WN, _NAV_MC, _ADJUST };
+extern const char *layer_names[];
 
 // Shortcuts to make keymap more readable
-#define SYM_L MO(_SYMB)
-#define KC_NAGR LT(_NAV, KC_GRV)
-#define KC_NAMI LT(_NAV, KC_MINS)
+
+// Redox-style layer switching
+#define SYM_L MO(_SYMBOL)
+#define KC_SYMP LT(SYM_L, KC_MPLY)
+#define KC_NAGR LT(_NAV_WN, KC_GRV)   // win
+#define KC_NAMI LT(_NAV_WN, KC_MINS)  // win
+#define KC_NA2GR LT(_NAV_MC, KC_GRV)  // mac
+#define KC_NA2MI LT(_NAV_MC, KC_MINS) // mac
 #define KC_ADEN LT(_ADJUST, KC_END)
 #define KC_ADPU LT(_ADJUST, KC_PGUP)
 
-#define KC_CTLF LCTL(KC_LEFT)
-#define KC_CTRG LCTL(KC_RIGHT)
-#define KC_CTHM LCTL(KC_HOME)
-#define KC_CTEN LCTL(KC_END)
+// Shortcuts on the Nav layer, OS dependent
+#define KC_CTLF LCTL(KC_LEFT)  // win
+#define KC_CTRG LCTL(KC_RIGHT) // win
+#define KC_CTHM LCTL(KC_HOME)  // win
+#define KC_CTEN LCTL(KC_END)   // win
+#define KC_OPLF LALT(KC_LEFT)  // mac
+#define KC_OPRG LALT(KC_RIGHT) // mac
+#define KC_OPUP LALT(KC_UP)    // mac
+#define KC_OPDN LALT(KC_DOWN)  // mac
+#define KC_GULF LGUI(KC_LEFT)  // mac
+#define KC_GURG LGUI(KC_RIGHT) // mac
+#define KC_GUUP LGUI(KC_UP)    // mac
+#define KC_GUDN LGUI(KC_DOWN)  // mac
 
+// Thumb cluster
 #define MT_SHBS MT(MOD_LSFT, KC_BSPC)
-#define MT_CTDL MT(MOD_LCTL, KC_DEL)
+#define MT_CTDL MT(MOD_LCTL, KC_DEL) // win
+#define MT_GUDL MT(MOD_LGUI, KC_DEL) // mac
 #define MT_ALES MT(MOD_LALT, KC_ESC)
-#define LT_NVSP LT(_NAV, KC_SPC)
+#define LT_NVSP LT(_NAV_WN, KC_SPC)  // win
+#define LT_NV2SP LT(_NAV_MC, KC_SPC) // mac
 #define LT_ADCR LT(_ADJUST, KC_ENTER)
-#define LT_SYMI LT(_SYMB, KC_MINS)
+#define LT_SYMI LT(_SYMBOL, KC_MINS)
+
+// Other
+#define MT_SHEQ MT(MOD_RSFT, KC_EQL)

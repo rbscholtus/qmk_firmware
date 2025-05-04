@@ -15,6 +15,7 @@
  */
 
 #include "luna.h"
+#include "keymap.h"
 
 #include QMK_KEYBOARD_H
 
@@ -27,12 +28,12 @@ static const char PROGMEM windows_logo[] = {
     0x0f, 0x0f, 0x1f, 0x1f, 0x1f, 0x1f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 };
 
-/* static const char PROGMEM mac_logo[] = {
+static const char PROGMEM mac_logo[] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xc0, 0xf0, 0xf8, 0xf8, 0xf8,
     0xf0, 0xf6, 0xfb, 0xfb, 0x38, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x07, 0x0f, 0x1f, 0x1f,
     0x0f, 0x0f, 0x1f, 0x1f, 0x0f, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
-}; */
+};
 // clang-format on
 
 /* timers */
@@ -49,8 +50,6 @@ bool isSneaking = false;
 bool isBarking  = false;
 bool isJumping  = false;
 bool showedJump = true;
-
-const char *layer_names[] = {"QWRTY", "SYMBL", " NAV ", "ADJST"};
 
 // clang-format off
 /* Sit */
@@ -220,7 +219,16 @@ void print_status_luna(void) {
     led_usb_state = host_keyboard_led_state();
 
     oled_set_cursor(0, 0);
-    oled_write_raw_P(windows_logo, sizeof(windows_logo));
+    os_variant_t os = detected_host_os();
+    switch (os) {
+        case OS_MACOS:
+        case OS_IOS:
+            oled_write_raw_P(mac_logo, sizeof(mac_logo));
+            break;
+        default:
+            oled_write_raw_P(windows_logo, sizeof(windows_logo));
+            break;
+    }
 
     oled_set_cursor(0, 3);
     oled_write(layer_names[get_highest_layer(layer_state)], false);

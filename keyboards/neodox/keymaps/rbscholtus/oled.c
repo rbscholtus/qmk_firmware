@@ -67,13 +67,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case MT_SHBS:
             isSneaking = record->event.pressed;
             break;
-        case KC_LCTL:
-        case KC_RCTL:
         case MT_CTDL:
+        case MT_GUDL:
             isBarking = record->event.pressed;
             break;
-        case KC_SPC:
         case LT_NVSP:
+        case LT_NV2SP:
             isJumping = record->event.pressed;
             if (record->event.pressed) {
                 showedJump = false;
